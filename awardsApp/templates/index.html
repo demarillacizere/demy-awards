@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block content %}
+{{block.super}}
+
+<style>
+    #suggestions{
+        position:fixed;
+        top:80px;
+        right:0;
+        }
+@media screen and (max-width:992px){
+    #suggestions{
+        position:absolute;
+        right:auto;
+        top:auto;
+    }
+}
+
+</style>
+<div class="container" style='margin-top:90px'>
+    <p>DEMY AWWARDS</p>
+</div>
+{%endblock%}
