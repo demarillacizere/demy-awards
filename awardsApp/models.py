@@ -7,7 +7,8 @@ from django.db.models import Q
 class Profile(models.Model):
     user= models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture =models.ImageField(upload_to= 'profiles/', blank=True, default="profiles/a.jpg")
-    bio = models.CharField(max_length=100, default='Welcome to you bio')
+    bio = models.CharField(max_length=500, default='Add your bio')
+    email=models.EmailField()
     contact = models.CharField(max_length=80)
 
     def __str__(self):
