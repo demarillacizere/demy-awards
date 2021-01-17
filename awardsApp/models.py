@@ -8,7 +8,7 @@ class Profile(models.Model):
     user= models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture =models.ImageField(upload_to= 'profiles/', blank=True, default="profiles/a.jpg")
     bio = models.CharField(max_length=500, default='Add your bio')
-    email=models.EmailField()
+    email=models.EmailField(default='your_email@gmail.com')
     contact = models.CharField(max_length=80)
 
     def __str__(self):
