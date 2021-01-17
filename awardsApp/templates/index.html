@@ -25,9 +25,9 @@
             <div class='panel panel-default'>
                <div class='panel-heading'><h5><a href="/profile/{{project.profile.id}}" style='text-decoration: none;'><b>{{project.user}}</a></b><br><small><i class="fas fa-map-marker-alt"></i>{{project.location}}</small></h5></div>
                 <div class='panel-body'>
-                    <a href="{% url 'single_project' project_id=project.id %}"><img src="{{project.image.url}}" width='100%' class="project" alt="project" ></a><br><br><p>{{project.title}}</p>
+                    <a href="/project/{{project.id}}"><img src="{{project.image.url}}" width='100%' class="project" alt="project" ></a><br><br><p>{{project.title}}</p>
                 </div>
-                    <div class='panel-footer'><a href="{% url 'single_project' project_id=project.id %}">Vote and Rate </a></div>
+                    <div class='panel-footer'><a href="/project/{{project.id}}">Vote and Rate </a></div>
              </div><br><br>
             {% endfor %}
 </div>

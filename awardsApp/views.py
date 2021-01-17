@@ -31,3 +31,8 @@ def register(request):
         return redirect('login')
     else:
         return render(request,'registration/registration_form.html')
+
+@login_required(login_url='/accounts/login/') 
+def rate_project(request,project_id):
+    project=Project.objects.get(id=project_id)
+    return render(request,"project.html",{"project":project})
