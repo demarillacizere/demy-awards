@@ -32,7 +32,7 @@ class Profile(models.Model):
     def search_user(cls,user):
         return cls.objects.filter(user__username__icontains=user).all()
 
-class Post(models.Model):
+class Project(models.Model):
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/', default='')
     description = models.CharField(max_length=200)
@@ -49,13 +49,13 @@ class Post(models.Model):
     class Meta:
         ordering = ['-date_posted']
 
-    def save_post(self):
+    def save_project(self):
         self.save()
 
-    def delete_post(self):
+    def delete_project(self):
         self.delete()
 
     @classmethod
     def search(cls,searchterm):
-        search = Post.objects.filter(Q(title__icontains=searchterm)|Q(description__icontains=searchterm)|Q(country__icontains=searchterm))
+        search = Project.objects.filter(Q(title__icontains=searchterm)|Q(description__icontains=searchterm)|Q(country__icontains=searchterm))
         return search
