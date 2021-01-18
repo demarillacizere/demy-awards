@@ -39,6 +39,11 @@
       <a class="navbar-brand" href="{% url 'index' %}"><i class="fab fa-instagram"></i> Demy Awwards</a>
     </div>
     <div class="navbar-collapse collapse">
+      <div class="col-md-1" style="padding-top:10px;">
+        <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
+            <input type="text" class="form-control my-2 my-sm-0 search-input" name="post" placeholder="Search by title.." id="search">
+        </form>
+    </div>
   <div class="col-sm-3 col-md-3 col-lg-3 nav navbar-right">
 
     <ul class="nav navbar-nav">

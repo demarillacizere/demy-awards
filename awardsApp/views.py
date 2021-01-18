@@ -35,6 +35,7 @@ def register(request):
 @login_required(login_url='/accounts/login/') 
 def rate_project(request,project_id):
     project=Project.objects.get(id=project_id)
+    print(project.title)
     return render(request,"project.html",{"project":project})
 
 @login_required(login_url='/accounts/login/') 
@@ -53,4 +54,27 @@ def profile(request,profile_id):
         'projects':projects,
     }
     return render(request,"profile.html",context=context)
+
+
+@login_required(login_url='/accounts/login/?next=/')
+def vote(request,post_id):
+    try:
+        post = Post.objects.get(id = post_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"projects/vote.html", {"post":post})
+
+def search_results(request):
+
+    if 'project' in request.GET and request.GET["project"]:
+        search_term = request.GET.get("project")
+        searched_projects = Project.search(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"projects": searched_projects})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
 

@@ -60,24 +60,3 @@ class Project(models.Model):
     def search(cls,searchterm):
         search = Project.objects.filter(Q(title__icontains=searchterm)|Q(description__icontains=searchterm)|Q(country__icontains=searchterm))
         return search
-
-@login_required(login_url='/accounts/login/?next=/')
-def vote(request,post_id):
-    try:
-        post = Post.objects.get(id = post_id)
-    except DoesNotExist:
-        raise Http404()
-    return render(request,"projects/vote.html", {"post":post})
-
-def search_results(request):
-
-    if 'project' in request.GET and request.GET["project"]:
-        search_term = request.GET.get("project")
-        searched_projects = Project.search(search_term)
-        message = f"{search_term}"
-
-        return render(request, 'search.html',{"message":message,"projects": searched_projects})
-
-    else:
-        message = "You haven't searched for any term"
-        return render(request, 'search.html',{"message":message})
