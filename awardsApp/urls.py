@@ -10,6 +10,9 @@ urlpatterns = [
     url(r'profile/(\d+)',views.profile,name='profile'),
     url(r'^vote/(?P<project_id>\d+)?$', views.vote, name='vote'), 
      url(r'^search/', views.search_results, name='search_results'),
+     url(r'^api/profile', views.ProfileList.as_view(),name='api-profile'),
+    url(r'^api/project', views.ProjectList.as_view(),name='api-project'),
+    url(r'^api',views.api_page,name='api-page'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

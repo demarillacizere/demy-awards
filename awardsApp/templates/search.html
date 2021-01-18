@@ -1,12 +1,12 @@
 
-{%extends 'projects/base.html'%}
+{%extends 'base.html'%}
 {% block content %}
 
-<div class="container" >
+<div class="container" style='margin-top:100px;'>
 
   <div class="row">
     {% if user%}
-    <h2>Found {{ projects|length }} named {{message}}</h2>
+    <h2>Found {{ projects|length }} users named {{message}}</h2>
     {% else %}
     <h2> There is no user by this name {{message}}</h2>
     {% endif %}

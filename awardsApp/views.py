@@ -69,6 +69,7 @@ def search_results(request):
     if 'project' in request.GET and request.GET["project"]:
         search_term = request.GET.get("project")
         searched_projects = Project.search(search_term)
+        print(search_term)
         message = f"{search_term}"
 
         return render(request, 'search.html',{"message":message,"projects": searched_projects})
@@ -78,3 +79,20 @@ def search_results(request):
         return render(request, 'search.html',{"message":message})
 
 
+@login_required(login_url='/accounts/login/')   
+def api_page(request):
+    return render(request,'api_page.html')
+
+
+class ProfileList(APIView):
+    def get(self, request, fromat=None):
+        all_profiles =Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
+
+
+class ProjectList(APIView):
+    def get(self, request, fromat=None):
+        all_projects =Project.objects.all()
+        serializers =ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
