@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load ratings %}
 {{block.super}} 
+<link rel="stylesheet" href="{%   static 'star-ratings/css/star-ratings.css' %}">
+    
 <div class="container" style="padding: 50px;">
     <div class="row">
         <div class="col-lg-4">
@@ -47,6 +50,7 @@
                 </div>
             </div>
         </div>
+        {% ratings post %}
         <div class="col-lg-8" style="padding:40px;">
          
             <div >
