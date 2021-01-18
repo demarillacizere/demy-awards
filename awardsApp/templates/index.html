@@ -23,7 +23,7 @@
         <div class="col-md-7 col-lg-7">
             {% for project in projects %}
             <div class='panel panel-default'>
-               <div class='panel-heading'><h5><a href="/profile/{{project.profile.id}}" style='text-decoration: none;'><b>{{project.user}}</a></b><br><small><i class="fas fa-map-marker-alt"></i>{{project.location}}</small></h5></div>
+               <div class='panel-heading'><h5><a href="/profile/{{project.user.profile.id}}" style='text-decoration: none;'><b>{{project.user}}</a></b><br><small><i class="fas fa-map-marker-alt"></i>{{project.location}}</small></h5></div>
                 <div class='panel-body'>
                     <a href="/project/{{project.id}}"><img src="{{project.image.url}}" width='100%' class="project" alt="project" ></a><br><br><p>{{project.title}}</p>
                 </div>
