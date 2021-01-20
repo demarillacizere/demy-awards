@@ -73,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'awards.wsgi.application'
 STAR_RATINGS_RERATE = False
+STAR_RATINGS_RANGE = 10
+STAR_RATINGS_STAR_HEIGHT=20
+STAR_RATINGS_STAR_WIDTH=20
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

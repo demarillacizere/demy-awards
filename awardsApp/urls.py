@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'register/',views.register, name='register'),
     url(r'project/(\d+)',views.rate_project,name='rate-project'),
     url(r'profile/(\d+)',views.profile,name='profile'),
+    url(r'my_profile',views.my_profile,name='my_profile'),
     url(r'^vote/(?P<project_id>\d+)?$', views.vote, name='vote'), 
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^api/profile', views.ProfileList.as_view(),name='api-profile'),

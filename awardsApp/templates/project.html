@@ -4,8 +4,6 @@
 {% load ratings %}
 {{block.super}} 
 <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
-...
 <div class="container" style="padding: 50px;">
     <div class="row">
         <div class="col-lg-4">
@@ -36,5 +34,5 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js'%}"></script>
 {%endblock%}

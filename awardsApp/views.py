@@ -37,6 +37,26 @@ def rate_project(request,project_id):
     project=Project.objects.get(id=project_id)
     print(project.title)
     return render(request,"project.html",{"project":project})
+@login_required(login_url='/accounts/login/') 
+def my_profile(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    projects = Project.objects.filter(user=profile.user).all()
+    print(profile.user)
+    form=ProfileUpdateForm(instance=profile)
+    
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES,instance=profile)
+        if form.is_valid():
+            form.save()
+    context={
+        'form':form,
+        'projects':projects,
+        'profile':profile,
+    }
+    return render(request,"my_profile.html",context=context)
+
+
 
 @login_required(login_url='/accounts/login/') 
 def profile(request,profile_id):
