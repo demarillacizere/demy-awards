@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'awardsApp',
-    'bootstrap3',
+    'bootstrap4',
     'star_ratings',
     'rest_framework',
     'django.contrib.admin',
@@ -72,7 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'awards.wsgi.application'
-
+STAR_RATINGS_RERATE = False
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

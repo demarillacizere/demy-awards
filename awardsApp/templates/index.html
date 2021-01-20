@@ -4,31 +4,130 @@
 {{block.super}}
 
 <style>
-    #suggestions{
-        position:fixed;
-        top:80px;
-        right:0;
-        }
-@media screen and (max-width:992px){
-    #suggestions{
+    /* .port{
         position:absolute;
-        right:auto;
-        top:auto;
-    }
+        top:80px;
+        width:'100%';
+    } */
+    /* .overlay{
+        position:relative;
+        padding:20%;
+        background-color:rgba(0,0,0,0.6);
+        text-align: center;
+        z-index:2;
+
+    } */
+    .hovereffect {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+  }
+  .hovereffect .overlay {
+    position: absolute;
+    overflow: hidden;
+    width: 80%;
+    height: 80%;
+    left: 10%;
+    top: 12%;
+    -webkit-transform: scale(0,1);
+    -ms-transform: scale(0,1);
+    transform: scale(0,1);
+  }
+  div.col-xs-6.col-sm-6.col-md-4.col-lg-3{
+    padding: 5px;
+    padding-bottom: 2px;
+}
+  .hovereffect:hover .overlay {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+  
+  .hovereffect img {
+    display: block;
+    position: relative;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+    margin-bottom: 7px;
+  }
+  
+  .hovereffect:hover img {
+    filter: brightness(0.4);
+    -webkit-filter: brightness(0.4);
+    -moz-filter: brightness(0.4);
+    -o-filter: brightness(0.4);
+    -ms-filter: brightness(0.4);
+  }
+  
+  .hovereffect h4 {
+      text-transform: uppercase;
+      text-align: center;
+      position: relative;
+      font-size: 15px;
+      background-color: transparent;
+      font-weight:bolder;
+      color: #ffffff;
+      margin-top: 1em;
+      padding: 2em 2em;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      
+      -webkit-transform: translate3d(0,-100%,0);
+      transform: translate3d(0,-100%,0);
+  }
+  
+  .hovereffect .btn{
+      background-color: #FFF;
+      font-weight: bolder;
+      -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+      transition: opacity 0.35s, transform 0.35s;
+      -webkit-transform: translate3d(0,100%,0);
+      transform: translate3d(0,100%,0);
+  }
+  
+  .hovereffect:hover p, .hovereffect:hover h4 {
+      opacity: 1;
+      filter: alpha(opacity=100);
+      -webkit-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
+  }
+  .fab { transform: scale(1.7,1.8); }
+  a{
+    text-decoration:none;
+    color:black;
+  }
+@media screen and (max-width:992px){
 }
 
 </style>
-<div class="container row" style='margin-top:90px'>
-    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
-        <div class="col-md-7 col-lg-7">
+<div class="container-fluid" style='margin-top:80px'>
+    <!-- <div class='container-fluid'>
+        <div class='port'><img src="/images/picnave.png" width='100%' height="500vh">
+        <div class='overlay'>Hello word</div></div>
+    </div> -->
+    <div classs='row'>
+        <div class="col-md-4 col-lg-4">
             {% for project in projects %}
-            <div class='panel panel-default'>
-               <div class='panel-heading'><h5><a href="/profile/{{project.user.profile.id}}" style='text-decoration: none;'><b>{{project.user}}</a></b><br><small><i class="fas fa-map-marker-alt"></i>{{project.location}}</small></h5></div>
-                <div class='panel-body'>
-                    <a href="/project/{{project.id}}"><img src="{{project.image.url}}" width='100%' class="project" alt="project" ></a><br><br><p>{{project.title}}</p>
-                </div>
-                    <div class='panel-footer'><a href="/project/{{project.id}}">Vote and Rate </a></div>
-             </div><br><br>
+                <div class=card>
+                    <div class="portfolio-wrap ">
+                        <div class="portfolio-wrap hovereffect">
+                            <a class="img-overlay card-img-top" style="width:100%" href='/project/{{project.id}}'>
+                                <img src="{{project.image.url}}" width='100%' href="" class="post" alt="post" >
+                                <div class="overlay">
+                                   <h4><a href='/project/{{project.id}}' class='btn'>Vote Now</a></h4>
+                                </div>
+                            </a>
+                        </div>
+                    
+                    <div class='card-body'>
+                    <span><b>{{project.title}}</b></span><br>
+                    <small>From {{project.country}}</small><hr>
+                <div>by <a href="/profile/{{project.user.profile.id}}" style='text-decoration: none;'><b>{{project.user}}</a></b></div>
+             </div></div></div>
             {% endfor %}
-</div>
+</div></div>
 {%endblock%}

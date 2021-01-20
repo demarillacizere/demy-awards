@@ -42,7 +42,7 @@ def rate_project(request,project_id):
 def profile(request,profile_id):
     profile = Profile.objects.get(id=profile_id)
     projects = Project.objects.filter(user=profile.user).all()
-    
+    print(profile.user)
     form=ProfileUpdateForm(instance=profile)
     
     if request.method == 'POST':
@@ -52,6 +52,7 @@ def profile(request,profile_id):
     context={
         'form':form,
         'projects':projects,
+        'profile':profile,
     }
     return render(request,"profile.html",context=context)
 
