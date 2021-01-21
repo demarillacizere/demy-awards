@@ -1,0 +1,26 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+<div class="hero-image" >
+  <div class="hero-text">
+
+    <h3 class="text-center" style="color:white;font-weight:bold">Sign In</h3><hr>
+
+    <form  action="/accounts/login/" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form%}
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary ">Sign In</button><br>
+      </div>
+
+      <input type="hidden" name="next" value="{{next}}">
+
+      Don't have an account? <a href="{% url 'register' %}"><span style="color: white;font-weight:bold"> Sign up</span></a>
+
+    </form>  
+
+  </div>
+</div><br><br>
+
+{% endblock %}
