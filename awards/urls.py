@@ -20,5 +20,5 @@ from django.contrib.auth import views
 urlpatterns = [
     url(r'^admin', admin.site.urls),
     url(r'',include('awardsApp.urls')),
-    url(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
+    url(r'^logout', views.LoginView.as_view(template_name='registration/login.html'), {"next_page": '/'}),
 ]

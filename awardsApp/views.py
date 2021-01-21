@@ -28,7 +28,7 @@ def register(request):
         user.save()
         profile=Profile.objects.create(user=user,email=user.email)
         
-        return redirect('login')
+        return redirect('index')
     else:
         return render(request,'registration/registration_form.html')
 
