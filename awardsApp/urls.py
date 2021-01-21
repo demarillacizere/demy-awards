@@ -3,6 +3,7 @@ from django.conf import settings
 from . import views
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     url(r'^$',views.index,name='index'),
     url(r'register/',views.register, name='register'),
@@ -14,6 +15,7 @@ urlpatterns = [
     url(r'^api/profile', views.ProfileList.as_view(),name='api-profile'),
     url(r'^api/project', views.ProjectList.as_view(),name='api-project'),
     url(r'^api',views.api_page,name='api-page'),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
