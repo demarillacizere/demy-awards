@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<style>
+    h4{
+        text-align:left;
+    }
+</style>
 <div class="container"  >
     
     <div class="row"style="padding-bottom: 50px;" >
@@ -24,15 +28,12 @@
         <div class="col-lg-6">
             <div class="card-1">
                 <div class="card-text " style="padding: 20px;">
-                    <h4 ><strong> Username:</strong> {{request.user.profile.user}}</h4>
-                    <h4 ><strong>First Name:</strong> {{request.user.profile.name}}</h4>
-                    <h4 ><strong>Email:</strong> {{request.user.profile.email}}</h4><br>
-                    <h4 class="text-center"><strong>Profile Bio</strong></h4>
-                    <p class="text-center">{{request.user.profile.bio}}</p><hr>
-                </div>
-
+                    <h4><strong> Username:</strong> {{request.user.profile.user}}</h4>
+                    <h4><strong>Email:</strong> {{request.user.profile.email}}</h4>
+                    <h4><strong>Bio:</strong>{{request.user.profile.bio}}</h4><br>
+                <a class="btn btn-info text-center" style="border-radius: 25px;"target="_blank">Edit Profile</a><br><br><hr>
             </div>
-
+            </div>
         </div>
     </div>
     <div >

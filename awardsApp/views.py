@@ -3,10 +3,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Project
-from .forms import NewProjectForm,ProfileUpdateForm
+from .forms import NewProjectForm,ProfileUpdateForm,RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -20,17 +20,20 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        username=request.POST['username']
-        email=request.POST['email']
-        password1=request.POST['password1']
-        password2=request.POST['password2']
-        user = User.objects.create_user(username=username,email=email,password=password1)
-        user.save()
-        profile=Profile.objects.create(user=user,email=user.email)
-        
-        return redirect('index')
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            email = form.cleaned_data.get('email')
+            user = User.objects.get(username=username)
+            profile=Profile.objects.create(user=user,email=email)
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('index')
     else:
-        return render(request,'registration/registration_form.html')
+        form = RegisterForm()
+    return render(request,'registration/registration_form.html')
 
 @login_required(login_url='/accounts/login/') 
 def rate_project(request,project_id):
@@ -76,14 +79,21 @@ def profile(request,profile_id):
     }
     return render(request,"profile.html",context=context)
 
-
-@login_required(login_url='/accounts/login/?next=/')
-def vote(request,post_id):
-    try:
-        post = Post.objects.get(id = post_id)
-    except DoesNotExist:
-        raise Http404()
-    return render(request,"projects/vote.html", {"post":post})
+@login_required(login_url='/accounts/login/')     
+def new_project(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.save()
+        return redirect('index')
+        
+    else:
+        form = NewProjectForm()
+    return render(request, 'new_project.html', {"form":form, "current_user":current_user})
+    
 
 def search_results(request):
 
