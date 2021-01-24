@@ -28,8 +28,8 @@ A web application where users can view,rate and upload their software developmen
 * Heroku
 
 ## Installation steps 
-* $ git clone https://github.com/demarillacizere/awards.git
-* $ cd awards
+* $ git clone https://github.com/demarillacizere/demy-awards.git
+* $ cd demy-awards
 * $ source virtual/bin/activate
 * $ install dependancies that will create an environment for the app to run by running the command pip3 install -r requirements.txt
 * $ Create the Database
