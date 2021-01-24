@@ -4,10 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
-    <!-- fonts -->
     <style>
+        #navbar{
+            font-family: 'Vollkorn', serif;}
         @media screen and (max-width:992px){
         #search_form, #profile, .upload{
        display: none;
@@ -19,7 +18,7 @@
 <body>
     <div id="navbar" class="container-fluid" style="border-bottom: 1px solid rgb(168, 165, 165);">
         <div class="row">
-            <div class="col-md-1" style="padding-top:15px; border-right:1px solid rgb(180, 175, 175); font-family: 'Encode Sans Expanded', sans-serif;">
+            <div class="col-md-1" style="padding-top:15px; border-right:1px solid rgb(180, 175, 175);">
                 <div class="">
                     <div id="mySidenav" class="sidenav" style='background-color:rgb(231, 224, 231); text-transform:uppercase;font-weight:bold;'>
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> CLOSE &nbsp;<span style='height:20px; width:20px; font-size:18px;'>&times;</span></a>
@@ -32,9 +31,9 @@
                         <li class="dropdown-divider"></li>
                         <a href='/api-page/'>API</a>
                         <li class="dropdown-divider"></li>
-                        <a href="/">Nominees</a>
+                        <a href="#">Nominees</a>
                         <li class="dropdown-divider"></li>
-                        <a href='/api-page/'>Past Winners</a>
+                        <a href='#'>Past Winners</a>
                     </div>
 
                     <div id="main">
@@ -47,7 +46,7 @@
                     <input type="text" class="form-control my-2 my-sm-0 search-input" name="project" placeholder="Search by title.." id="search">
                 </form>
             </div>
-            <div class="col-md-8" style=" padding-top:5px;text-align:center;font-family: 'Comfortaa', cursive;">
+            <div class="col-md-8" style=" padding-top:5px;text-align:center;">
                 <div class="row">
                     <div class="col-md-10">
                         <a class="navbar-brand navbar-right" href="{% url 'index' %}" style="font-size:30px; color:black; font-family: 'Carter One', cursive; ">awwards.</a>
