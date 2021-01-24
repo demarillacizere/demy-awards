@@ -1,12 +1,99 @@
 
 {%extends 'base.html'%}
 {% block content %}
+<style>
+  .hovereffect {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+  }
+  .hovereffect .overlay {
+    position: absolute;
+    overflow: hidden;
+    width: 80%;
+    height: 80%;
+    left: 10%;
+    top: 12%;
+    -webkit-transform: scale(0,1);
+    -ms-transform: scale(0,1);
+    transform: scale(0,1);
+  }
+  div.col-xs-6.col-sm-6.col-md-4.col-lg-3{
+    padding: 5px;
+    padding-bottom: 2px;
+}
+  .hovereffect:hover .overlay {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+  
+  .hovereffect img {
+    display: block;
+    position: relative;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+    margin-bottom: 7px;
+  }
+  
+  .hovereffect:hover img {
+    filter: brightness(0.4);
+    -webkit-filter: brightness(0.4);
+    -moz-filter: brightness(0.4);
+    -o-filter: brightness(0.4);
+    -ms-filter: brightness(0.4);
+  }
+  
+  .hovereffect h4 {
+      text-transform: uppercase;
+      text-align: center;
+      position: relative;
+      font-size: 15px;
+      background-color: transparent;
+      font-weight:bolder;
+      color: #ffffff;
+      margin-top: 0.5em;
+      padding: 1em 2em;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      
+      -webkit-transform: translate3d(0,-100%,0);
+      transform: translate3d(0,-100%,0);
+  }
+  
+  .hovereffect .btn{
+      background-color: #FFF;
+      font-weight: bolder;
+      -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+      transition: opacity 0.35s, transform 0.35s;
+      -webkit-transform: translate3d(0,100%,0);
+      transform: translate3d(0,100%,0);
+  }
+  
+  .hovereffect:hover p, .hovereffect:hover h4 {
+      opacity: 1;
+      filter: alpha(opacity=100);
+      -webkit-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
+  }
+  .fab { transform: scale(1.7,1.8); }
+  a{
+    text-decoration:none;
+    color:black;
+  }
+@media screen and (max-width:992px){
+}
 
-<div class="container" style='margin-top:100px;'>
+</style>
+<div class="container" style='margin-top:80px;'>
 
   <div>
     {% if projects %}
-    <h6>Found {{ projects|length }} results</b></h6>
+    <h6>Found {{ projects|length }} results</b></h6><br>
     {% else %}
     <h2> Found 0 projects </h2>
     {% endif %}
@@ -17,22 +104,24 @@
 
     {% for project in projects %}
     
-    <div class="col-md-5 col-lg-5">
-      <div class="card border-0 transform-on-hover">
-        <!-- <a class="" href="">
-          <a href="{%url 'my_profile'%}"><img class="img-responsive" src="{{ user.profile.prof_picture.url }}" style="width:50px; border-radius:50%"></a>
-        </a> -->
-        <div class="card-body">
-            <img src="{{project.image.url}}" alt="{{ project.title}}" width='100%'>
-        </div>
-      </div>
-    </div>
     <div class="col-md-4 col-lg-4">
-      <br><br>
-      <h3><a href='project/{{project.id}}'>{{project.title}}</a></h3>
-        <p>{{project.description}}</p>
+      <div class=card>
+          <div class="portfolio-wrap ">
+              <div class="portfolio-wrap hovereffect">
+                  <a class="img-overlay card-img-top" style="width:100%" href='/project/{{project.id}}'>
+                      <img src="{{project.image.url}}" width='100%' href="" class="post" alt="post" >
+                      <div class="overlay">
+                        <h4><a href='/project/{{project.id}}' class='btn' style='background-color:white; border-radius:15px;'>Vote Now</a></h4>
+                      </div>
+                  </a>
+              </div>
+            <div class='card-body'>
+              <p><a href='{{project.link}}'><b>{{project.title}}</b></a></p>
+              <small style='display:block; display:flex;justify-content: space-between;'><p>From {{project.country}}</p><span class='text-right'style='display:block;'>{{project.date_posted|date:"d-F Y"}}</span></small><hr>
+              <div style='font-size:0.7em;'><img src='{{project.user.profile.profile_picture.url}}' width='18px' height='18px' style='border-radius:50%;'> &nbsp;<a href="/profile/{{project.user.profile.id}}" style='text-decoration: none;'>{{project.user|upper}}</a></div>
+        </div>
     </div>
-    <div class="col-md-3 col-lg-3"></div>
+</div></div>
     {% endfor %}
   </div>
 </div>

@@ -5,7 +5,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% if title %}
     <title>Awwards - {{title}}</title>
     {% else %}
@@ -25,6 +25,11 @@
       
     {% endblock %}
     <title>Awwards</title>
+    <style>
+      body{
+        background-color:rgb(247, 242, 242);
+      }
+    </style>
   </head>
   <body >
     {% include 'navbar.html' %} 

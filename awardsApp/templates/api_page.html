@@ -1,22 +1,23 @@
 
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-        <h3 style="text-align: center;font-family: 'Calistoga', cursive;"><span style="color:#535250;"> Magnum</span> <span style='color:#f26419;'>Awwards API</span> </h3><hr>
+<style>
+    a:hover{
+        background-color:rgb(187, 187, 187);
+    }
+</style>
+    <div class="container" style='margin-top:80px;'>
         <div class="row" >
             <div class="col-lg-2" >
-
             </div>
             <div class="col-lg-8" >
                 <div class="card ">
 
                     <div class="hero-image" >
-                        <div class="hero-text">
-                            <h1 style="font-family: 'Calistoga', cursive;color:white;">Magnum Awwards <br> API</h1>
-                            <h4 class="text-muted" style="color:white;">By :Musyoki Mutua</h4><br>  
-                            <h4 style="font-weight: bold;color:white">API End Points</h4><hr>
-                            <a class="btn btn-default " href="api/project/?format=json " target="_blank">Project end-point</a><br><br>
-                            <a  class="btn btn-default "  href="api/profile/?format=json" target="_blank">Profile end-point</a><br><br>
+                        <div style='padding:10px;'>
+                            <h2 class='text-center' style="font-family: 'Carter One', cursive;color:rgb(17, 17, 17); padding-top:5%;">API ENDPOINTS</h2> <hr>
+                            <a class='btn btn-basic' href="/api/project/?format=json " target="_blank">Project end-point</a><br>
+                            <a class='btn btn-basic' href="/api/profile/?format=json" target="_blank">Profile end-point</a><br><br>
                         </div>
                     </div>
                     <div class="card-text text-center" style="padding: 40px;">

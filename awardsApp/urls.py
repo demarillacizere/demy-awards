@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^$',views.index,name='index'),
-    url(r'^accounts/profile/', views.index, name='index'),
+    url(r'^accounts/profile/', views.my_profile, name='my_profile'),
     url(r'register/',views.register, name='register'),
     url(r'project/(\d+)',views.rate_project,name='rate-project'),
     url(r'profile/(\d+)',views.profile,name='profile'),
@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^api',views.api_page,name='api-page'),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

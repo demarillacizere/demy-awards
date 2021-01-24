@@ -1,26 +1,53 @@
-{%extends "registration/base.html"%}
+{%extends "base.html"%}
 {% load bootstrap4 %}
 {% block content %}
-<div class="hero-image" >
-  <div class="hero-text">
+<style>
+  body{
+    font-family: 'Vollkorn', serif;
+  }
+  
+  .col-md-7{
+    margin-top:20vh;
+  }
+  .form-group{
+    display:block;
+  }
+</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class='col-md-3' id='login'></div>
+    <div class='col-md-7' style='background-color:black;color:white;'>
+    <div class="col-md-10" >
+      {% if form.errors %}
+        <p> Password or Username is incorrect </p>
+      {% endif %}
+      <div class="panel panel-default">
 
-    <h3 class="text-center" style="color:white;font-weight:bold">Sign In</h3><hr>
+        <div class="panel-heading"><br>
+          <h3 class="text-center">Log In</h3>
+        </div>
+        <div class="panel-body">
 
-    <form  action="/accounts/login/" method="post">
-      {% csrf_token %}
-      {% bootstrap_form form%}
+          <form  action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form%}
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary ">Sign In</button><br>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary btn-sm" style='width:100%' value="Login">
+            </div>
+
+            <input type="hidden" name="next" value="{{next}}">
+
+          </form>
+        </div>
+        
       </div>
-
-      <input type="hidden" name="next" value="{{next}}">
-
-      Don't have an account? <a href="{% url 'register' %}"><span style="color: white;font-weight:bold"> Sign up</span></a>
-
-    </form>  
-
+      <div class='panel text-center' style='padding:15px;'>Don't have an account? <a href="{% url 'register' %}"><span style="color: rgb(219, 215, 215);font-weight:bold"> Sign up</span></a>
+      </a></div>
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div></div>
   </div>
-</div><br><br>
+</div>
 
 {% endblock %}
